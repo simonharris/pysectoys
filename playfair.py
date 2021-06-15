@@ -1,7 +1,8 @@
 """
 Encode and decode text using a Playfair cipher
 
-TODO: add a couple of simple tests
+TODO: investigate the correct way to handle whitespace and casing. That wasn't
+    part of the exercise
 """
 
 # Constant name...doesn't conform to UPPER_CASE naming style
@@ -47,10 +48,9 @@ class PlayfairCipher:
     def _create_key(self, string):
         """Creates the 25 character key table from an input string"""
 
-        string = string.upper()
+        string = string.upper().replace('J', 'I')
 
         seen = []
-        string = string.replace('J', 'I')
         key = ''
 
         for char in string:
@@ -164,7 +164,7 @@ class PlayfairCipher:
 
 if __name__ == '__main__':
 
-    mode = input('Would you like to encrypt or decrypt? (e/d)')
+    mode = input('Would you like to encrypt or decrypt? (e/d) ')
 
     if mode == 'e':
         plaintext = input('Please input plaintext: ')
